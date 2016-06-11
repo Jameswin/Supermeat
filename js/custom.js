@@ -15,7 +15,8 @@ $(function () {
             var email=email_obj.value;
 
             var iframesrc="https://tross.typeform.com/to/vjmqmH?email="+email+"?iframe=true";
-                
+            var w=window.open();
+            var html='<iframe id="typeform" src="'+iframesrc+'" frameborder="0" style="width: 100%; height: 100%;"></iframe>';
 
             $.ajax({
                 url: form.attr('action'),
@@ -36,8 +37,7 @@ $(function () {
                         
                         fbq('track', 'Lead'); 
                         ga('send', 'event', 'Email', 'signup', 'supermeat');
-                        $("#typeform").attr("src", iframesrc);
-                        $("#typemodal").modal();
+                        $(w.document.body).html(html);
 
                         return true;
 
